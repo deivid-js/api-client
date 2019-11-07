@@ -1,0 +1,24 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+input {
+    padding: 5px;
+}
+
+button {
+    cursor: pointer;
+    padding: 10px 15px;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+.btn-primary {
+    background: #7159c1;
+    color: #fff;
+}
+
