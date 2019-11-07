@@ -1,19 +1,19 @@
 class BasePage {
 
+    constructor() {
+        this.container = 'root';
+    }
+
     init() {
-        if (LAST_PAGE) {
-            LAST_PAGE.componentWillMount();
-        }
-
-        LAST_PAGE = this;
-
         this.componentWillMount();
 
-        fillHtmlById('root', this.render());
+        fillHtmlById(this.container, this.render());
 
         this.componentDidMount();
+    }
 
-        console.log(LAST_PAGE);
+    setContainer(container) {
+        this.container = container;
     }
 
     componentWillMount() {}

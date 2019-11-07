@@ -8,20 +8,43 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="https://kit.fontawesome.com/43b75f753f.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <div id="loading">
+        <div>Carregando...</div>
+    </div>
+    
     <div id="root"></div>
+
+    <div id="modal-wrapper">
+        <div id="modal-close-zone">&nbsp;</div>
+        <div id="modal">
+            <div id="modal-title">
+                <span>&nbsp;</span>
+                <span id="modal-title-text">Título</span>
+                <div id="modal-title-button"><span>X</span></div>
+            </div>
+            <div id="modal-content">conteudo</div>
+        </div>
+    </div>
     
     <!--  -->
     <script src="lib/jquery.js"></script>
     <script src="lib/axios.js"></script>
-
+    
     <script src="src/api.js"></script>
     <script src="src/utils.js"></script>
-
+    
     <!--  -->
     <script src="pages/BasePage.js"></script>
+    <script src="pages/Page.js"></script>
     <script src="pages/Login.js"></script>
+    <script src="pages/Pessoa.js"></script>
+    <script src="pages/Contato.js"></script>
+    <script src="pages/TipoContato.js"></script>
+    <script src="pages/Endereco.js"></script>
     <script src="pages/Home.js"></script>
 
     <script src="src/index.js"></script>

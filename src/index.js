@@ -1,11 +1,14 @@
 function app() {
+    document.getElementById('modal-title-button').addEventListener('click', onCloseModal);
+    document.getElementById('modal-close-zone').addEventListener('click', onCloseModal);
+
     if (!hasValidToken()) {        
-        redirect(new Login());
+        load(Login);
 
         return;
     }
 
-    redirect(Home);
+    load(Home);
 }
 
 app();
