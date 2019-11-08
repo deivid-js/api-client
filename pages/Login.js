@@ -20,6 +20,8 @@ class LoginPage extends BasePage {
                     api.defaults.headers.common['Authorization'] = `Bearer ${data.access_token}`;
 
                     loadingDestroy();
+
+                    load(Home);
                 })
                 .catch(err => {
                     loadingDestroy();

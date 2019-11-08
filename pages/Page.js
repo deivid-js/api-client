@@ -25,8 +25,6 @@ class Page extends BasePage {
     componentDidMount() {
         this.load();
 
-        addEventById('btn-consultar', 'click', () => this.load());
-
         addEventById('btn-new', 'click', () => {
             openModal(`Cadastro de ${this.title}`, `<div class='form' id='form-handler'></div>`);
 
@@ -36,12 +34,32 @@ class Page extends BasePage {
                 loadingStart();
 
                 let values = {};
+                let error = false;
+                let message = null;
 
                 this.fields.forEach(field => {
                     if (!field.isKey) {
-                        values[field.name] = byId(`f-${field.name}`).value;
+                        let fieldValue = byId(`f-${field.name}`).value;
+                        
+                        if (fieldValue.trim() === '') {
+                            error = true;
+                            message = `O campo ${field.alias} é obrigatório!`;
+                        } else if ((field.type === Types.INTEGER || field.type === Types.CPFCNPJ) && fieldValue.match(/[a-zA-z]/g)) {
+                            error = true;
+                            message = `O campo ${field.alias} deve ser preenchido apenas com números!`;
+                        }
+
+                        values[field.name] = fieldValue;
                     }
                 });
+
+                if (error) {
+                    alert(message);
+
+                    loadingDestroy();
+
+                    return;
+                }
                 
                 api.post(`${this.route}/store`, values)
                     .then(response => {
@@ -90,6 +108,8 @@ class Page extends BasePage {
                 <button class='btn btn-primary' id='btn-close-modal'>Cancelar</button>
             </div>
         `);
+
+        addEventById('btn-close-modal', 'click', onCloseModal);
 
         if (fkeys.length) {
             loadingStart();
@@ -207,12 +227,30 @@ class Page extends BasePage {
             loadingStart();
 
             let values = {};
+            let error = false;
+            let message = null;
 
             this.fields.forEach(field => {
                 if (!field.isKey) {
+                    let fieldValue = byId(`f-${field.name}`).value;
+
+                    if (fieldValue.trim() === '') {
+                        message = `O campo ${field.alias} é obrigatório!`;
+
+                        error = true;
+                    }
+
                     values[field.name] = byId(`f-${field.name}`).value;
                 }
             });
+
+            if (error) {
+                alert(message);
+
+                loadingDestroy();
+
+                return;
+            };
             
             api.put(`${this.route}/update/${key}`, values)
                 .then(response => {

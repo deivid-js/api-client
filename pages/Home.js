@@ -1,6 +1,12 @@
 class HomePage extends BasePage {
 
     componentDidMount() {
+        addEventById('btn-logout', 'click', () => {
+            localStorage.removeItem(JWT_TOKEN_NAME);
+
+            window.location.reload();
+        });
+
          addEventByClass('menu-item', 'click', ({ target }) => {
             switch (target.getAttribute('page')) {
                 case 'pessoa': {
@@ -32,7 +38,7 @@ class HomePage extends BasePage {
             <div id='home-container'>
                 <div id='home-left'>
                     <div id='menu-header'></div>
-                    <div style='flex: 1; border-right: 1px solid rgba(0, 0, 0, .1);'>
+                    <div style='flex: 1; border-right: 1px solid rgba(0, 0, 0, .1); height: 100vh;'>
                         <div id='menu'>
                             <div class='menu-item' page='pessoa'>Pessoa</div>
                             <div class='menu-item' page='contato'>Contato</div>
@@ -44,7 +50,7 @@ class HomePage extends BasePage {
                 <div id='home-right'>
                     <div id='topbar'>
                         <div id='topbar-status'>&nbsp;</div>
-                        <button class='btn-link'>Sair</button>
+                        <button class='btn-link' id='btn-logout'>Sair</button>
                     </div>
                     <div id='main-container'>Home</div>
                 </div>

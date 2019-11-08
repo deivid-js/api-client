@@ -5,8 +5,13 @@
     font-family: 'Quicksand', sans-serif;
 }
 
+html {
+    overflow: hidden;
+}
+
 input {
-    padding: 5px;
+    padding: 7px;
+    border: 1px solid rgba(0, 0, 0, .1);
 }
 
 button {
@@ -179,4 +184,13 @@ h1, h2, h3, h4, h5, h6 {
 
 #btn-consultar {
     display: none;
+}
+
+select {
+    padding: 7px;
+    border: 1px solid rgba(0, 0, 0, .1);
+}
+
+.form-row:not(:first-child) {
+    padding-top: 15px;
 }
